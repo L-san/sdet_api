@@ -44,13 +44,10 @@ public class ApiTest {
         ObjectMapper objectMapper = getObjectMapper();
         PokemonAPI pokemonAPI = getPokemonAPI();
 
-        String rattataURL = "rattata/";
-        String pidgeottoURL = "pidgeotto/";
-
-        String rattataJson = pokemonAPI.doGetByURL(rattataURL, 200);
+        String rattataJson = pokemonAPI.doGetByPokemonName("rattata", 200);
         PokemonDTO rattataPokemon = objectMapper.readValue(rattataJson, PokemonDTO.class);
 
-        String pidgeottoJson = pokemonAPI.doGetByURL(pidgeottoURL, 200);
+        String pidgeottoJson = pokemonAPI.doGetByPokemonName("pidgeotto", 200);
         PokemonDTO pidgeottoPokemon = objectMapper.readValue(pidgeottoJson, PokemonDTO.class);
 
         Assertions.assertTrue(rattataPokemon.getWeight() < pidgeottoPokemon.getWeight());
@@ -66,7 +63,7 @@ public class ApiTest {
         ObjectMapper objectMapper = getObjectMapper();
         PokemonAPI pokemonAPI = getPokemonAPI();
 
-        String json =pokemonAPI.doGetByURL("", 200);
+        String json =pokemonAPI.doGetPokemon( 200);
         ResponseDTO response = objectMapper.readValue(json,ResponseDTO.class);
         int limit = Integer.parseInt(response.getNext().split("limit=")[1]); //null или нецелое число не спарсится
         Assertions.assertEquals(response.getResults().size(), limit);
