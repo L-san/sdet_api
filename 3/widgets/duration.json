@@ -1,0 +1,1 @@
+[{"uid":"3f19db4ff8c180e","name":"checkPokemonList()","time":{"start":1680623453054,"stop":1680623455403,"duration":2349},"status":"passed","severity":"normal"},{"uid":"3cb88715eccc66a3","name":"comparison()","time":{"start":1680623453050,"stop":1680623455776,"duration":2726},"status":"passed","severity":"normal"}]
