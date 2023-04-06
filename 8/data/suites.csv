@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Apr 06 17:39:06 GMT 2023","Thu Apr 06 17:39:10 GMT 2023","3323","","tests.ApiTest","","tests.ApiTest","comparison","comparison()",""
+"passed","Thu Apr 06 17:39:06 GMT 2023","Thu Apr 06 17:39:10 GMT 2023","3158","","tests.ApiTest","","tests.ApiTest","checkPokemonList","checkPokemonList()",""
