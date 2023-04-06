@@ -38,7 +38,7 @@ https://pokeapi.co/api/v2/pokemon/{name}/
 
 1. Сделать GET-запрос
 ```
-https://pokeapi.co/api/v2/pokemon/
+https://pokeapi.co/api/v2/pokemon/?limit=15
 ```
 2. Десериализовать ответ из json в POJO
 
@@ -46,14 +46,14 @@ https://pokeapi.co/api/v2/pokemon/
 
 При каждом GET HTTP Status: 200 OK 
 
-Значение поля next содержит limit={number}, где number целое число и не null
+Значение поля next содержит limit=15, где number целое число и не null
 
 Пример:
 ```
-"next": "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20"
+"next": "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=15"
 ```
 Значение каждого name в списке results не является null
 
-Длина списка results равна значению number в limit={number}
+Длина списка results равна значению number в limit=15
 
 
