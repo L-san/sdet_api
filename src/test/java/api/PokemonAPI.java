@@ -1,6 +1,7 @@
 package api;
 
 import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import lombok.Builder;
 
@@ -14,7 +15,7 @@ public class PokemonAPI {
 
     @Step("GET-запрос к API получение списка покемонов")
     public String doGetPokemon(int limit, int statusCode) throws MalformedURLException {
-        return RestAssured.given()
+        return RestAssured.given().filter(new AllureRestAssured())
                 .queryParam("limit", limit)
                 .when()
                 .get(new URL(BASE_URL))
@@ -24,7 +25,7 @@ public class PokemonAPI {
 
     @Step("GET-запрос к API поиск покемона по имени")
     public String doGetByPokemonName(String name, int statusCode) throws MalformedURLException {
-        return RestAssured.when()
+        return RestAssured.given().filter(new AllureRestAssured()).when()
                 .get(new URL(BASE_URL + name + "/"))
                 .then().assertThat().statusCode(statusCode)
                 .extract().asString();
