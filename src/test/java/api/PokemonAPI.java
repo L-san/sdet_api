@@ -6,12 +6,11 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import lombok.Builder;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 @Builder
 public class PokemonAPI {
-    private final RequestSpecification requestSpecification = RestAssured.given().filter(new AllureRestAssured()).baseUri("https://pokeapi.co/api/v2/pokemon/");
+    private final RequestSpecification requestSpecification = RestAssured.given()
+            .filter(new AllureRestAssured())
+            .baseUri("https://pokeapi.co/api/v2/pokemon/");
 
     @Step("GET-запрос к API получение списка покемонов")
     public String doGetPokemon(int limit, int statusCode) {
