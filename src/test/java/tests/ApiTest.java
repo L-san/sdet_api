@@ -23,11 +23,11 @@ public class ApiTest {
     protected static ThreadLocal<ObjectMapper> objectMapperInstance = new ThreadLocal<>();
     protected static ThreadLocal<PokemonAPI> pokemonAPIInstance = new ThreadLocal<>();
 
-    protected ObjectMapper getObjectMapper(){
+    protected ObjectMapper getObjectMapper() {
         return objectMapperInstance.get();
     }
 
-    protected PokemonAPI getPokemonAPI(){
+    protected PokemonAPI getPokemonAPI() {
         return pokemonAPIInstance.get();
     }
 
@@ -62,12 +62,13 @@ public class ApiTest {
     public void checkPokemonList() throws IOException {
         ObjectMapper objectMapper = getObjectMapper();
         PokemonAPI pokemonAPI = getPokemonAPI();
-
-        String json =pokemonAPI.doGetPokemon( 200);
-        ResponseDTO response = objectMapper.readValue(json,ResponseDTO.class);
-        int limit = Integer.parseInt(response.getNext().split("limit=")[1]); //null или нецелое число не спарсится
+        int limit = 15;
+        String json = pokemonAPI.doGetPokemon(limit, 200);
+        ResponseDTO response = objectMapper.readValue(json, ResponseDTO.class);
+        int actualLimit = Integer.parseInt(response.getNext().split("limit=")[1]); //null или нецелое число не спарсится
         Assertions.assertEquals(response.getResults().size(), limit);
-        response.getResults().forEach(x-> Assertions.assertNotNull(x.getName()));
+        response.getResults().forEach(x -> Assertions.assertNotNull(x.getName()));
+        Assertions.assertEquals(limit, actualLimit);
     }
 
 }
